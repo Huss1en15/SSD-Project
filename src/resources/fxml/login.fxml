@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.LoginController"
+      prefWidth="420" prefHeight="320"
+      style="-fx-padding: 30; -fx-background-color: linear-gradient(to bottom, #eef2f3, #8e9eab);">
+
+    <Label text="Login" textFill="#2c3e50">
+        <font>
+            <Font name="Arial Black" size="28"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="usernameField" promptText="Username"
+               style="-fx-pref-width: 300px; -fx-background-radius: 8; -fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 8;"/>
+
+    <PasswordField fx:id="passwordField" promptText="Password"
+                   style="-fx-pref-width: 300px; -fx-background-radius: 8; -fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 8;"/>
+
+    <Button text="Login" onAction="#handleLogin"
+            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8; -fx-padding: 10 20;"/>
+
+</VBox>
