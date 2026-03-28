@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15" alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.LeaveController"
+      prefWidth="400" prefHeight="350"
+      style="-fx-padding: 30; -fx-background-color: #ffffff;">
+
+    <Label text="Leave Request Form" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+
+    <DatePicker fx:id="startDate" promptText="Start Date"
+                style="-fx-pref-width: 300px;" />
+
+    <DatePicker fx:id="endDate" promptText="End Date"
+                style="-fx-pref-width: 300px;" />
+
+    <TextArea fx:id="reasonArea" promptText="Reason"
+              style="-fx-pref-width: 300px; -fx-pref-height: 120px;" />
+
+    <Button fx:id="submitButton" text="Submit" onAction="#submitLeaveRequest"
+            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20;"/>
+
+</VBox>
