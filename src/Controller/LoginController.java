@@ -71,14 +71,14 @@ public final class LoginController {
         Parent root;
 
         if ("admin".equalsIgnoreCase(user.getRole())) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin_panel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/admin_panel.fxml"));
             root = loader.load();
             AdminController adminController = loader.getController();
             adminController.setCurrentAdmin(user);
             stage.setScene(new Scene(root, 800, 600));
             stage.setTitle("Admin Panel");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/dashboard.fxml"));
             root = loader.load();
             ClockController controller = loader.getController();
             controller.setUser(user);

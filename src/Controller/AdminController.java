@@ -197,7 +197,7 @@ public final class AdminController {
     public void handlePasswordReset() {
         try {
             ensureAuthorized();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reset_password.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/reset_password.fxml"));
             Parent root = loader.load();
             ResetPasswordController resetController = loader.getController();
             resetController.setUser(currentAdmin);
@@ -217,7 +217,7 @@ public final class AdminController {
         try {
             logAction("Logged out");
             Stage currentStage = (Stage) attendanceTable.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/login.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login");
             loginStage.setScene(new Scene(root, 400, 300));

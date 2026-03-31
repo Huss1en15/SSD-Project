@@ -13,7 +13,7 @@ public final class LeaveDAO {
     public static void submitLeave(int userId, LocalDate start, LocalDate end, String reason) throws Exception {
         String name = getUserName(userId);
 
-        String sql = "INSERT INTO leave_requests (user_id, name, start_date, end_date, reason) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO leave_requests (user_id, name, start_date, end_date, reason, status) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
@@ -23,6 +23,7 @@ public final class LeaveDAO {
             stmt.setDate(3, Date.valueOf(start));
             stmt.setDate(4, Date.valueOf(end));
             stmt.setString(5, reason);
+            stmt.setString(6, "Pending");
             stmt.executeUpdate();
         }
     }

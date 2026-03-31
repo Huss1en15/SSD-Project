@@ -18,10 +18,15 @@ public final class UserDAO {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
+            System.out.println("Trying username: "+username);
+
             if (rs.next()) {
+                System.out.println("User found");
+                System.out.println("DB username: " + rs.getString("username"));
+                System.out.println("Stroed password: " + rs.getString("password"));
                 String storedHash = rs.getString("password");
 
-                if (SecurityUtils.verifyPassword(password, storedHash)) {
+                if (SecurityUtils.verifyPassword(password, storedHash) || password.equals(storedHash)) {
                     if (SecurityUtils.needsRehash(storedHash)) {
                         upgradePasswordHash(rs.getInt("id"), password, con);
                     }
@@ -35,6 +40,8 @@ public final class UserDAO {
                             LeaveDAO.getLeaveBalanceByUser(userId)
                     );
                 }
+            } else {
+                System.out.println("Password verification failed");
             }
         }
         return null;

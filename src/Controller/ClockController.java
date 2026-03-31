@@ -104,7 +104,7 @@ public final class ClockController {
     public void openLeaveForm() {
         try {
             ensureAuthenticated();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/leave_form.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/leave_form.fxml"));
             Parent root = loader.load();
             LeaveController leaveController = loader.getController();
             leaveController.setUser(currentUser);
@@ -152,7 +152,7 @@ public final class ClockController {
     public void handlePasswordReset() {
         try {
             ensureAuthenticated();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reset_password.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/reset_password.fxml"));
             Parent root = loader.load();
             ResetPasswordController controller = loader.getController();
             controller.setUser(currentUser);
@@ -173,7 +173,7 @@ public final class ClockController {
             ensureAuthenticated();
             ActivityLogDAO.log(currentUser.getId(), currentUser.getUsername(), currentUser.getRole(), "Logged out");
             Stage currentStage = (Stage) logoutButton.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/login.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Login");
             loginStage.setScene(new Scene(root, 400, 300));

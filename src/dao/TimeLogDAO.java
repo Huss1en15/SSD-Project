@@ -37,9 +37,9 @@ public final class TimeLogDAO {
             }
 
             Duration duration = Duration.between(clockInTime, clockOut);
-            String workingHours = String.format("%02d:%02d", duration.toHours(), duration.toMinutes() % 60);
+            int workingHours = (int) duration.toMinutes();
             stmt.setTimestamp(1, Timestamp.valueOf(clockOut));
-            stmt.setString(2, workingHours);
+            stmt.setInt(2, workingHours);
             stmt.setInt(3, userId);
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated == 0) {
@@ -101,11 +101,25 @@ public final class TimeLogDAO {
     private static TimeLog buildTimeLogFromResultSet(ResultSet rs) throws SQLException {
         int userId = rs.getInt("user_id");
         String name = rs.getString("name");
+
         LocalDateTime clockIn = rs.getTimestamp("clock_in").toLocalDateTime();
         Timestamp clockOutTS = rs.getTimestamp("clock_out");
         LocalDateTime clockOut = clockOutTS != null ? clockOutTS.toLocalDateTime() : null;
-        String workingHours = rs.getString("working_hours");
-        return new TimeLog(userId, name, clockIn, clockOut, workingHours);
+
+        int minutes = rs.getInt("working_hours");
+        String workingHoursDisplay;
+
+        if (rs.wasNull()) {
+            workingHoursDisplay = "N/A";
+        } else if (minutes < 60) {
+            workingHoursDisplay = minutes + " min";
+        } else {
+            int hours = minutes / 60;
+            int remainingMinutes = minutes % 60;
+            workingHoursDisplay = hours + " hr " + remainingMinutes + " min";
+        }
+
+        return new TimeLog(userId, name, clockIn, clockOut, workingHoursDisplay);
     }
 
     private static String getUserName(int userId) throws Exception {

@@ -28,6 +28,9 @@ public final class DBConnection {
         String url = readSetting("db.url", "DB_URL");
         String user = readSetting("db.user", "DB_USER");
         String password = readSetting("db.password", "DB_PASSWORD");
+
+
+        System.out.println("DB URL: " + url + "DB User: " + user);
         return DriverManager.getConnection(url, user, password);
     }
 
